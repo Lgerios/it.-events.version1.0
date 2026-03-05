@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админка Кибер Арены</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="admin-panel">
+        <a href="index.html" class="back-link">← На главную</a>
+        <h1>Панель администратора</h1>
+        <div id="access-error" class="error-message" style="display: none;">У вас нет прав доступа к этой странице.</div>
+        
+        <div id="admin-content" style="display: none;">
+            <h2>Создать / редактировать турнир</h2>
+            <form id="tournamentForm">
+                <input type="hidden" id="tournamentId">
+                <input type="text" id="title" placeholder="Название турнира" required>
+                <input type="text" id="game" placeholder="Игра" required>
+                <input type="datetime-local" id="date" required>
+                <input type="number" id="max_participants" placeholder="Макс. участников" required>
+                <select id="status">
+                    <option value="soon">Скоро</option>
+                    <option value="open">Открыт</option>
+                    <option value="recruiting">Идёт набор</option>
+                    <option value="finished">Завершён</option>
+                </select>
+                <input type="text" id="image" placeholder="Ссылка на изображение (images/...)">
+                <button type="submit">Сохранить</button>
+            </form>
+
+            <h2>Существующие турниры</h2>
+            <div id="tournamentsList"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/tournaments';
+
+        // Проверка прав администратора
+        function checkAdmin() {
+            const userData = localStorage.getItem('currentUser');
+            if (!userData) {
+                showNoAccess();
+                return false;
+            }
+            try {
+                const user = JSON.parse(userData);
+                if (!user.isAdmin) {
+                    showNoAccess();
+                    return false;
+                }
+                document.getElementById('admin-content').style.display = 'block';
+                document.getElementById('access-error').style.display = 'none';
+                return true;
+            } catch (e) {
+                showNoAccess();
+                return false;
+            }
+        }
+
+        function showNoAccess() {
+            document.getElementById('admin-content').style.display = 'none';
+            document.getElementById('access-error').style.display = 'block';
+        }
+
+        // Загрузка турниров
+        async function loadTournaments() {
+            if (!checkAdmin()) return;
+            try {
+                const res = await fetch(API_URL);
+                if (!res.ok) throw new Error('Ошибка загрузки турниров');
+                const tournaments = await res.json();
+                const container = document.getElementById('tournamentsList');
+                container.innerHTML = tournaments.map(t => `
+                    <div class="tournament-item">
+                        <span>${t.title} (${t.game}) - ${t.status}</span>
+                        <div>
+                            <button onclick="editTournament(${t.id})">Редактировать</button>
+                            <button onclick="deleteTournament(${t.id})">Удалить</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('tournamentsList').innerHTML = '<p style="color:red;">Ошибка загрузки данных. Проверьте JSON Server.</p>';
+            }
+        }
+
+        // Редактирование турнира
+        window.editTournament = async function(id) {
+            try {
+                const res = await fetch(`${API_URL}/${id}`);
+                if (!res.ok) throw new Error('Турнир не найден');
+                const t = await res.json();
+                document.getElementById('tournamentId').value = t.id;
+                document.getElementById('title').value = t.title;
+                document.getElementById('game').value = t.game;
+                const date = new Date(t.date);
+                const localDate = date.toISOString().slice(0,16);
+                document.getElementById('date').value = localDate;
+                document.getElementById('max_participants').value = t.max_participants;
+                document.getElementById('status').value = t.status;
+                document.getElementById('image').value = t.image || '';
+            } catch (err) {
+                alert('Ошибка загрузки турнира: ' + err.message);
+                console.error(err);
+            }
+        };
+
+        // Удаление турнира
+        window.deleteTournament = async function(id) {
+            if (!confirm('Удалить турнир?')) return;
+            try {
+                const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error('Ошибка удаления');
+                loadTournaments();
+            } catch (err) {
+                alert('Ошибка удаления: ' + err.message);
+                console.error(err);
+            }
+        };
+
+        // Сохранение (создание/обновление)
+        document.getElementById('tournamentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!checkAdmin()) return;
+
+            const id = document.getElementById('tournamentId').value;
+            const data = {
+                title: document.getElementById('title').value,
+                game: document.getElementById('game').value,
+                date: new Date(document.getElementById('date').value).toISOString(),
+                max_participants: parseInt(document.getElementById('max_participants').value),
+                status: document.getElementById('status').value,
+                image: document.getElementById('image').value || null,
+                current_participants: 0
+            };
+
+            try {
+                if (id) {
+                    // Редактирование: сохраняем текущее количество участников
+                    const currentRes = await fetch(`${API_URL}/${id}`);
+                    const current = await currentRes.json();
+                    data.current_participants = current.current_participants;
+                    const res = await fetch(`${API_URL}/${id}`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    if (!res.ok) throw new Error('Ошибка обновления');
+                } else {
+                    const res = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    if (!res.ok) throw new Error('Ошибка создания');
+                }
+                loadTournaments();
+                e.target.reset();
+                document.getElementById('tournamentId').value = '';
+            } catch (err) {
+                alert('Ошибка сохранения: ' + err.message);
+                console.error(err);
+            }
+        });
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAdmin();
+            loadTournaments();
+        });
+    </script>
+</body>
+</html>
