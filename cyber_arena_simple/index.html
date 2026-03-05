@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT.Москва | Кибер Арена</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <img src="images/it_mos_new_logo.jpg" alt="Логотип" class="logo">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="#tournaments" class="nav__link">Турниры</a></li>
+                    <li><a href="#register" class="nav__link">Регистрация</a></li>
+                    <li><a href="#bracket" class="nav__link">Сетка</a></li>
+                    <li><a href="#leaderboard" class="nav__link">Лидеры</a></li>
+                    <li><a href="#rewards" class="nav__link">Награды</a></li>
+                    <!-- Ссылка на админ-панель (видна только админу) -->
+                    <li><a href="#admin-panel" class="nav__link" id="adminLink" style="display:none;">Управление</a></li>
+                </ul>
+            </nav>
+            <div class="auth" id="authBlock">
+                <div class="auth-logged-out" id="loggedOut">
+                    <button class="button button--small" id="loginBtn">Войти</button>
+                </div>
+                <div class="auth-logged-in" id="loggedIn" style="display: none;">
+                    <span id="greeting"></span>
+                    <button class="button button--small" id="logoutBtn">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero reveal">
+            <div class="container hero__container">
+                <div class="hero__image">
+                    <img src="images/al.jpg" alt="Фото" class="hero__photo">
+                </div>
+                <div class="hero__speech">
+                    <h2 class="hero__greeting">Приветствую!</h2>
+                    <p>Представляю вам новый сервис колледжа IT.Москва — «Кибер Арена». Это удобный инструмент для всех, кто увлекается киберспортом.</p>
+                    <p>Сервис позволяет:<br>🔹 Находить команду для совместной игры;<br>🔹 Бронировать места на наших киберспортивных площадках;<br>🔹 Быстро регистрироваться на турниры и следить за расписанием.</p>
+                    <p>«Кибер Арена» создана, чтобы вы могли больше времени уделять практике, тренировкам и участию в соревнованиях. Пользуйтесь, объединяйтесь и побеждайте!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tournaments" class="section reveal">
+            <div class="container">
+                <h2 class="section__title">Актуальные турниры</h2>
+                <div class="cards-grid" id="tournaments-list"></div>
+            </div>
+        </section>
+
+        <section id="register" class="section section--dark reveal">
+            <div class="container">
+                <h2 class="section__title">Регистрация на турнир</h2>
+                <form class="registration-form" id="registrationForm">
+                    <div class="form__group">
+                        <label for="name" class="form__label">Имя / Никнейм</label>
+                        <input type="text" id="name" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email</label>
+                        <input type="email" id="email" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="team" class="form__label">Название команды (если есть)</label>
+                        <input type="text" id="team" class="form__input">
+                    </div>
+                    <div class="form__group">
+                        <label for="tournament-select" class="form__label">Выберите турнир</label>
+                        <select id="tournament-select" class="form__select" required>
+                            <option value="" disabled selected>— выберите —</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="button button--accent">Отправить заявку</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="bracket" class="section reveal">
+            <div class="container">
+                <h2 class="section__title">Турнирная сетка</h2>
+                <div id="bracket-container"></div>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="section section--dark reveal">
+            <div class="container">
+                <h2 class="section__title">Таблица лидеров сезона</h2>
+                <table class="leaderboard" id="leaderboard-table">
+                    <thead>
+                        <tr><th>#</th><th>Игрок / Команда</th><th>Очки</th><th>Победы</th></tr>
+                    </thead>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="rewards" class="section reveal">
+            <div class="container">
+                <h2 class="section__title">Награды турниров</h2>
+                <div class="rewards-grid" id="rewards-list"></div>
+            </div>
+        </section>
+
+        <!-- Панель администратора (скрыта для обычных пользователей) -->
+        <section id="admin-panel" class="section section--dark reveal" style="display: none;">
+            <div class="container">
+                <h2 class="section__title">Управление турнирами</h2>
+                
+                <!-- Форма добавления нового турнира -->
+                <form class="admin-form" id="addTournamentForm">
+                    <h3>Добавить турнир</h3>
+                    <div class="form__group">
+                        <label for="addTitle" class="form__label">Название</label>
+                        <input type="text" id="addTitle" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="addGame" class="form__label">Игра</label>
+                        <input type="text" id="addGame" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="addDate" class="form__label">Дата и время</label>
+                        <input type="datetime-local" id="addDate" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="addMax" class="form__label">Максимум участников</label>
+                        <input type="number" id="addMax" class="form__input" min="2" value="16" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="addStatus" class="form__label">Статус</label>
+                        <select id="addStatus" class="form__select">
+                            <option value="soon">Скоро</option>
+                            <option value="open">Открыт</option>
+                            <option value="recruiting">Идёт набор</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label for="addImage" class="form__label">URL изображения</label>
+                        <input type="text" id="addImage" class="form__input" value="images/default.jpg" required>
+                    </div>
+                    <button type="submit" class="button button--accent">Создать турнир</button>
+                </form>
+
+                <!-- Список турниров для редактирования/удаления -->
+                <h3 style="margin-top: 2rem;">Существующие турниры</h3>
+                <div id="admin-tournaments-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>© 2026 IT.Москва — Кибер Арена. Все права защищены.</p>
+            <p>Проект студентов колледжа</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно входа -->
+    <div class="modal" id="loginModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">&times;</button>
+            <h2 class="modal__title">Вход</h2>
+            <form id="modalLoginForm">
+                <div class="form__group">
+                    <label for="modalEmail" class="form__label">Email</label>
+                    <input type="email" id="modalEmail" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="modalPassword" class="form__label">Пароль</label>
+                    <input type="password" id="modalPassword" class="form__input" required>
+                </div>
+                <button type="submit" class="button button--accent modal__submit">Войти</button>
+            </form>
+            <div class="modal__footer">
+                <a href="#" id="modalRegisterLink" class="modal__link">Нет аккаунта? Зарегистрироваться</a>
+            </div>
+            <p class="modal__info">Мы предлагаем вам узнать о том, как можно стать участником</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования турнира (для админа) -->
+    <div class="modal" id="editTournamentModal">
+        <div class="modal__overlay" id="editModalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="editModalClose">&times;</button>
+            <h2 class="modal__title">Редактировать турнир</h2>
+            <form id="editTournamentForm">
+                <input type="hidden" id="editId">
+                <div class="form__group">
+                    <label for="editTitle" class="form__label">Название</label>
+                    <input type="text" id="editTitle" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="editGame" class="form__label">Игра</label>
+                    <input type="text" id="editGame" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="editDate" class="form__label">Дата и время</label>
+                    <input type="datetime-local" id="editDate" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="editMax" class="form__label">Максимум участников</label>
+                    <input type="number" id="editMax" class="form__input" min="2" required>
+                </div>
+                <div class="form__group">
+                    <label for="editStatus" class="form__label">Статус</label>
+                    <select id="editStatus" class="form__select">
+                        <option value="soon">Скоро</option>
+                        <option value="open">Открыт</option>
+                        <option value="recruiting">Идёт набор</option>
+                    </select>
+                </div>
+                <div class="form__group">
+                    <label for="editImage" class="form__label">URL изображения</label>
+                    <input type="text" id="editImage" class="form__input" required>
+                </div>
+                <button type="submit" class="button button--accent">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

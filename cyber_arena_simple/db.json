@@ -1,0 +1,76 @@
+{
+  "tournaments": [
+    {
+      "id": 1,
+      "title": "Dota 2 Battle Cup",
+      "game": "Dota 2",
+      "date": "2026-03-15T18:00:00",
+      "max_participants": 16,
+      "current_participants": 12,
+      "status": "soon",
+      "image_url": "images/dota2.jpg"
+    },
+    {
+      "id": 2,
+      "title": "CS2 Open Qualifier",
+      "game": "CS2",
+      "date": "2026-03-20T15:00:00",
+      "max_participants": 16,
+      "current_participants": 8,
+      "status": "open",
+      "image_url": "images/cs2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Valorant Collegiate",
+      "game": "Valorant",
+      "date": "2026-03-25T17:30:00",
+      "max_participants": 16,
+      "current_participants": 5,
+      "status": "recruiting",
+      "image_url": "images/valorant.jpg"
+    }
+  ],
+  "participants": [
+    {
+      "id": 1,
+      "tournamentId": 1,
+      "nickname": "DragonSlayer",
+      "email": "dragon@example.com",
+      "team_name": "Dragons"
+    },
+    {
+      "id": 2,
+      "tournamentId": 1,
+      "nickname": "Phoenix",
+      "email": "phoenix@example.com",
+      "team_name": ""
+    }
+  ],
+  "leaderboard": [
+    { "id": 1, "nickname": "DragonSlayer", "points": 2450, "wins": 12 },
+    { "id": 2, "nickname": "AimBOT", "points": 2320, "wins": 10 },
+    { "id": 3, "nickname": "NoobNoMore", "points": 2180, "wins": 9 },
+    { "id": 4, "nickname": "W1nner", "points": 2010, "wins": 8 }
+  ],
+  "rewards": [
+    {
+      "id": 1,
+      "place": 1,
+      "title": "Чемпион",
+      "description": "50% призового фонда + эксклюзивный кубок и золотые медали для всей команды"
+    },
+    {
+      "id": 2,
+      "place": 2,
+      "title": "Серебряный призёр",
+      "description": "30% призового фонда + серебряные медали и ценные призы от спонсоров"
+    },
+    {
+      "id": 3,
+      "place": 3,
+      "title": "Бронзовый призёр",
+      "description": "20% призового фонда + бронзовые медали и памятные подарки"
+    }
+  ]
+}

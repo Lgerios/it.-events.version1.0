@@ -1,0 +1,875 @@
+/* ===== Базовые настройки ===== */
+:root {
+    --bg-dark: #242424;
+    --bg-card: #2d2d2d;
+    --bg-darker: #1a1a1a;
+    --accent: #5682f8;
+    --accent-hover: #6f9aff;
+    --text-primary: #f0f0f0;
+    --text-secondary: #b0b0b0;
+    --border-color: #3a3a3a;
+    --font-main: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== Шапка ===== */
+.header {
+    background: #242424;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 20px;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    max-width: 250px;
+    object-fit: contain;
+}
+
+.nav__list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.nav__link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    font-size: 1rem;
+}
+
+.nav__link:hover {
+    color: var(--accent);
+}
+
+/* ===== БЛОК АВТОРИЗАЦИИ (ДОБАВЛЕНО) ===== */
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.auth-logged-out,
+.auth-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.auth-input {
+    padding: 0.5rem 1rem;
+    background: #3a3a3a;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    min-width: 200px;
+    transition: border 0.2s;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.button--small {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 30px;
+}
+
+#greeting {
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 0.5rem;
+    white-space: nowrap;
+}
+
+/* ===== Приветствие ===== */
+.hero {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero__container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.hero__image {
+    flex: 0 0 200px;
+}
+
+.hero__photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent);
+    box-shadow: 0 0 20px rgba(86, 130, 248, 0.3);
+}
+
+.hero__speech {
+    flex: 1;
+    min-width: 280px;
+}
+
+.hero__greeting {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* ===== Секции ===== */
+.section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section--dark {
+    background: var(--bg-darker);
+}
+
+.section__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    color: var(--text-primary);
+}
+
+.section__title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+}
+
+/* ===== Карточки турниров ===== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.tournament-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.tournament-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(86, 130, 248, 0.2);
+    border-color: var(--accent);
+}
+
+.tournament-card__image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tournament-card__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 30px;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.tournament-card__title {
+    font-size: 1.4rem;
+    margin: 1rem 1rem 0.5rem 1rem;
+    color: var(--text-primary);
+}
+
+.tournament-card__date,
+.tournament-card__participants {
+    margin: 0 1rem 0.5rem 1rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.free-slots {
+    color: var(--accent);
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.tournament-card .button {
+    margin: 1rem;
+    align-self: flex-start;
+}
+
+/* ===== Кнопки ===== */
+.button {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.button--primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+}
+
+.button--accent {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+}
+
+.button:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #fff;
+}
+
+/* ===== Форма регистрации ===== */
+.registration-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.form__group {
+    margin-bottom: 1.5rem;
+}
+
+.form__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.form__input, .form__select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: #3a3a3a;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.form__input:focus, .form__select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form__input::placeholder {
+    color: #888;
+}
+
+/* ===== Турнирная сетка (стили уже были, оставляем) ===== */
+.bracket {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.bracket__round {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 300px;
+}
+
+.round-title {
+    font-size: 1.5rem;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.match {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.2s;
+    font-size: 1.2rem;
+}
+
+.match:hover {
+    border-color: var(--accent);
+}
+
+.match--final {
+    border-width: 3px;
+    border-color: gold;
+}
+
+.match__team {
+    font-weight: 600;
+    flex: 1;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.match__score {
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    padding: 0 1rem;
+}
+
+.bracket__note {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* ===== Таблица лидеров ===== */
+.leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.leaderboard th {
+    background: #3a3a3a;
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.leaderboard td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.leaderboard tr:last-child td {
+    border-bottom: none;
+}
+
+.leaderboard tbody tr:hover {
+    background: #3a3a3a;
+}
+
+/* ===== Награды (с иконками) ===== */
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.reward-card {
+    background: var(--bg-card);
+    border: 2px solid transparent;
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.reward-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.reward-card__icon {
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.reward-card__title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.reward-card__desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Индивидуальные градиенты */
+.reward-gold {
+    background: linear-gradient(145deg, #3d2e1c, #2a1f12);
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.reward-gold .reward-card__title {
+    color: #ffd700;
+}
+
+.reward-silver {
+    background: linear-gradient(145deg, #2f3a4a, #1e2633);
+    border-color: #c0c0c0;
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.2);
+}
+
+.reward-silver .reward-card__title {
+    color: #c0c0c0;
+}
+
+.reward-bronze {
+    background: linear-gradient(145deg, #3e2e22, #2b1f17);
+    border-color: #cd7f32;
+    box-shadow: 0 0 20px rgba(205, 127, 50, 0.2);
+}
+
+.reward-bronze .reward-card__title {
+    color: #cd7f32;
+}
+
+/* ===== Подвал ===== */
+.footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* ===== Анимация появления при скролле ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 768px) {
+    .header__container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav__list {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .auth {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .auth-logged-out,
+    .auth-logged-in {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .auth-input {
+        min-width: auto;
+        flex: 1;
+    }
+
+    .hero__container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero__image {
+        flex: 0 0 auto;
+    }
+
+    .bracket {
+        gap: 2rem;
+    }
+
+    .match {
+        padding: 1rem;
+        font-size: 1rem;
+        min-width: 250px;
+    }
+
+    .footer__container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section__title {
+        font-size: 1.6rem;
+    }
+
+    .logo {
+        height: 40px;
+    }
+}
+/* ===== Базовые настройки ===== */
+:root {
+    --bg-dark: #242424;
+    --bg-card: #2d2d2d;
+    --bg-darker: #1a1a1a;
+    --accent: #5682f8;
+    --accent-hover: #6f9aff;
+    --text-primary: #f0f0f0;
+    --text-secondary: #b0b0b0;
+    --border-color: #3a3a3a;
+    --font-main: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== Шапка ===== */
+.header {
+    background: #242424;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 20px;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    max-width: 250px;
+    object-fit: contain;
+}
+
+.nav__list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.nav__link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    font-size: 1rem;
+}
+
+.nav__link:hover {
+    color: var(--accent);
+}
+
+/* ===== Блок авторизации в шапке ===== */
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.auth-logged-out,
+.auth-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.button--small {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 30px;
+}
+
+#greeting {
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 0.5rem;
+    white-space: nowrap;
+}
+
+/* ===== Модальное окно входа ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.modal__content {
+    position: relative;
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 2.5rem;
+    max-width: 400px;
+    width: 90%;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.modal__close:hover {
+    color: var(--accent);
+}
+
+.modal__title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    text-align: center;
+}
+
+.modal .form__group {
+    margin-bottom: 1.5rem;
+}
+
+.modal .form__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.modal .form__input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: #3a3a3a;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.modal .form__input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.modal__submit {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.modal__footer {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.modal__link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.modal__link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.modal__info {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+/* Админ-панель */
+.admin-form {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.admin-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.admin-card .button--small {
+    margin-right: 0.5rem;
+}
+/* Админ-панель */
+.admin-form {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.admin-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.admin-card .button--small {
+    margin-right: 0.5rem;
+}
