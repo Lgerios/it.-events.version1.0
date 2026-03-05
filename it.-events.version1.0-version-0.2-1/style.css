@@ -11,6 +11,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     color: #fff;
+    line-height: 1.6;
 }
 
 header {
@@ -19,16 +20,19 @@ header {
     justify-content: space-between;
     padding: 20px;
     background: #242424;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .logo {
-    width: 18%;
+    width: 180px;
 }
 
 .btn ul {
     list-style: none;
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .btn a {
@@ -48,16 +52,112 @@ header {
     transform: scale(1.05);
 }
 
+.btn a.active {
+    background: #3a5fd0;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(85,130,255,0.5);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
 .greeting {
     background: rgba(85, 130, 255, 0.2);
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 16px;
     font-weight: 500;
+    white-space: nowrap;
+}
+
+.auth-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.auth-btn {
+    background: #5582FF;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    white-space: nowrap;
+}
+
+.auth-btn:hover {
+    background: #3a5fd0;
+    transform: scale(1.05);
+}
+
+.register-btn {
+    background: #2a2a2a;
+    border: 1px solid #5582FF;
+}
+
+.register-btn:hover {
+    background: #3a3a3a;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #2a2a2a;
+    padding: 5px 15px 5px 20px;
+    border-radius: 30px;
+    border: 1px solid #5582FF;
+    color: #fff;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.user-avatar {
+    font-size: 28px;
+    color: #5582FF;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.logout-btn:hover {
+    background: #ff4d4d;
+    color: #fff;
 }
 
 main {
-    margin: 50px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #5582FF;
 }
 
 .fade-in {
@@ -69,10 +169,412 @@ main {
     to { opacity: 1; }
 }
 
+/* Блок с фото и мыслями (для index) */
+.photo-with-thoughts {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.image_alek {
+    max-width: 300px;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.thoughts {
+    flex: 1;
+    min-width: 250px;
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #5582FF;
+}
+
+.thoughts h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #5582FF;
+    font-size: 1.5rem;
+}
+
+.thoughts p {
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.thoughts p:last-child {
+    margin-bottom: 0;
+}
+
 .hover-zoom {
     transition: transform 0.3s ease;
 }
 
 .hover-zoom:hover {
     transform: scale(1.02);
+}
+
+/* Стили для турниров */
+.tournaments-content {
+    flex: 1;
+    min-width: 250px;
+}
+
+.tournaments-content h2 {
+    color: #5582FF;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.tournament-card {
+    background: #2a2a2a;
+    border-left: 4px solid #5582FF;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tournament-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(85, 130, 255, 0.3);
+}
+
+.tournament-date {
+    color: #5582FF;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.tournament-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.tournament-desc {
+    color: #ccc;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.tournament-meta {
+    color: #888;
+    font-size: 0.9rem;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+}
+
+.admin-edit-btn {
+    background: #ffaa33;
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+    font-size: 14px;
+}
+
+.admin-edit-btn:hover {
+    background: #ff9500;
+}
+
+/* Админ-панель для турниров */
+.admin-panel {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 30px;
+    border: 2px solid #5582FF;
+}
+
+.admin-panel h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.editor-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.tournament-date-input,
+.tournament-title-input,
+.tournament-meta-input {
+    flex: 1 1 150px;
+    padding: 10px;
+    background: #333;
+    border: 1px solid #5582FF;
+    color: #fff;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.tournament-desc-input {
+    flex: 2 1 300px;
+    padding: 10px;
+    background: #333;
+    border: 1px solid #5582FF;
+    color: #fff;
+    border-radius: 4px;
+    font-family: inherit;
+    min-height: 60px;
+    resize: vertical;
+}
+
+.delete-tournament {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.delete-tournament:hover {
+    background: #cc0000;
+}
+
+#add-tournament-btn, #save-tournaments-btn, #close-admin-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: opacity 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#add-tournament-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+#save-tournaments-btn {
+    background: #5582FF;
+    color: white;
+}
+
+#close-admin-btn {
+    background: #888;
+    color: white;
+}
+
+#add-tournament-btn:hover, #save-tournaments-btn:hover, #close-admin-btn:hover {
+    opacity: 0.9;
+}
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #2a2a2a;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    border: 2px solid #5582FF;
+    position: relative;
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #fff;
+}
+
+.modal-content h2 {
+    color: #5582FF;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content input {
+    background: #333;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 12px 15px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: #5582FF;
+}
+
+.modal-btn {
+    background: #5582FF;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+}
+
+.modal-btn:hover {
+    background: #3a5fd0;
+}
+
+.modal-switch {
+    text-align: center;
+    margin-top: 15px;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.modal-switch a {
+    color: #5582FF;
+    text-decoration: none;
+}
+
+.modal-switch a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn ul {
+        justify-content: center;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+
+    .photo-with-thoughts {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .thoughts {
+        width: 100%;
+    }
+    
+    .editor-row {
+        flex-direction: column;
+    }
+    
+    .tournament-date-input,
+    .tournament-title-input,
+    .tournament-desc-input,
+    .tournament-meta-input {
+        width: 100%;
+    }
+    
+    .delete-tournament {
+        align-self: flex-end;
+    }
+}
+.tournament-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tournament-game-select {
+    background: #333;
+    border: 1px solid #5582FF;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    flex: 1 1 150px;
+}
+
+.tournament-game-select option {
+    background: #333;
+    color: #fff;
+}
+/* Стили для шапки турнира с иконкой */
+.tournament-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Стили для select в админ-панели */
+.tournament-game-select {
+    background: #333;
+    border: 1px solid #5582FF;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    flex: 1 1 150px;
+}
+
+.tournament-game-select option {
+    background: #333;
+    color: #fff;
 }

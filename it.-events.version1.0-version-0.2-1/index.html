@@ -5,62 +5,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT_Moskow - cyber arena</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
-        <img src="it_mos_new_logo.jpg" alt="Логотип" class="logo">
+        <img src="it_mos_new_logo.jpg" alt="Логотип IT Москва" class="logo">
         <nav class="btn">
             <ul>
-                <li><a href="#" id="events-link">События</a></li>
-                <li><a href="#" id="tournaments-link">Турниры</a></li>
+                <li><a href="index.html" id="events-link" class="active">События</a></li>
+                <li><a href="tournaments.html" id="tournaments-link">Турниры</a></li>
                 <li><a href="#" id="rating-link">Рейтинг</a></li>
             </ul>
         </nav>
-        <div class="greeting" id="greeting"></div>
+        <div class="header-right">
+            <div class="greeting" id="greeting"></div>
+            <div id="auth-section" class="auth-section"></div>
+        </div>
     </header>
     <main>
         <h1 class="cyber_arena fade-in">Кибер арена</h1>
-        <img src="aleksandr.jpeg" alt="Александр" class="image_alek hover-zoom">
-        <p class="rch_alek fade-in">
-            Дорогие студенты, абитуриенты и коллеги!<br>
-            Современный мир невозможно представить без цифровых технологий, и киберспорт давно перестал быть просто развлечением — это официальная спортивная дисциплина, индустрия с миллионными аудиториями и место для реализации талантов.<br>
-            В колледже IT.Москва мы всегда идем в ногу со временем. Именно поэтому мы с гордостью представляем наш новый сервис — «Кибер Арена».<br>
-            Это уникальная цифровая платформа, созданная специально для вас. Мы объединили киберспорт и удобство современных IT-решений, чтобы каждый студент мог почувствовать себя частью большого игрового сообщества прямо в стенах родного колледжа.<br>
-            Что такое «Кибер Арена»? Это ваш персональный помощник в мире виртуального спорта. Сервис решает три главные задачи:<br>
-            Поиск команды: Мечтаете собрать свой состав по CS2, Dota 2, Valorant или MLBB? «Кибер Арена» поможет найти единомышленников и тиммейтов среди студентов.<br>
-            Бронирование мест: У нас есть современное оборудование, но свободное время в игровой зоне — ресурс ценный. Теперь вы можете легко забронировать место за ПК, чтобы подготовиться к турниру или просто интересно провести время с друзьями.<br>
-            Участие в турнирах: Забудьте о сложных регистрациях! На нашей платформе вы в пару кликов сможете записаться на внутриколледжные и городские соревнования, отслеживать сетку турнира и свои результаты.<br>
-            Мы верим, что киберспорт развивает стратегическое мышление, реакцию и умение работать в команде — навыки, критически важные для будущих айтишников.<br>
-            Присоединяйтесь к «Кибер Арене»! Открывайте для себя мир турниров, находите друзей и докажите, что студенты IT.Москва — лучшие не только в коде, но и на виртуальных полях сражений.<br>
-            Добро пожаловать в игру!
-        </p>
+        
+        <div class="photo-with-thoughts">
+            <img src="aleksandr.jpeg" alt="Александр" class="image_alek hover-zoom fade-in">
+            <div class="thoughts fade-in">
+                <h3>Мысли Казаков Александр Юрьевич</h3>
+                <p>Дорогие студенты, абитуриенты и коллеги!</p>
+                <p>Современный мир невозможно представить без цифровых технологий, и киберспорт — это отличная форма спорта. Это не только физическая активность, но и интеллектуальная игра.</p>
+                <p>В последние годы киберспорт стал одним из самых популярных видов спорта.</p>
+                <p>Киберспорт — это все большее количество людей, которые хотят научиться спорт.</p>
+                <p>Но для этого нужно пройти обучение и подготовиться к экзаменам.</p>
+                <p>Для этого существует МТ-Москва.</p>
+                <p>Мы предлагаем вам узнать о том, как можно стать участником МТ-Москвы.</p>
+            </div>
+        </div>
     </main>
 
-    <script>
-        const hour = new Date().getHours();
-        const greetingEl = document.getElementById('greeting');
-        if (hour < 12) greetingEl.textContent = 'Доброе утро!';
-        else if (hour < 18) greetingEl.textContent = 'Добрый день!';
-        else greetingEl.textContent = 'Добрый вечер!';
+    <!-- Модальные окна входа и регистрации -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="login">&times;</span>
+            <h2>Вход</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Пароль" required>
+                <button type="submit" class="modal-btn">Войти</button>
+            </form>
+            <p class="modal-switch">Нет аккаунта? <a href="#" id="switch-to-register">Зарегистрироваться</a></p>
+        </div>
+    </div>
 
-        ['events', 'tournaments', 'rating'].forEach(id => {
-            const link = document.getElementById(id + '-link');
-            if (link) {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert('Раздел в разработке. Скоро здесь будет интересно!');
-                });
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="register">&times;</span>
+            <h2>Регистрация</h2>
+            <form id="register-form">
+                <input type="text" id="register-name" placeholder="Имя" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Пароль" required>
+                <button type="submit" class="modal-btn">Зарегистрироваться</button>
+            </form>
+            <p class="modal-switch">Уже есть аккаунт? <a href="#" id="switch-to-login">Войти</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация базы пользователей с ролью
+        if (!localStorage.getItem('users')) {
+            const defaultUsers = [
+                { id: '1', name: 'Александр', email: 'alexander@example.com', password: 'admin123', role: 'admin', avatar: 'account_circle' }
+            ];
+            localStorage.setItem('users', JSON.stringify(defaultUsers));
+        }
+
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
+        const authSection = document.getElementById('auth-section');
+        const greetingEl = document.getElementById('greeting');
+
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+        const switchToRegister = document.getElementById('switch-to-register');
+        const switchToLogin = document.getElementById('switch-to-login');
+
+        function updateAuthUI() {
+            if (currentUser) {
+                authSection.innerHTML = `
+                    <div class="user-profile">
+                        <span class="user-name">${currentUser.name}</span>
+                        <span class="material-icons user-avatar">${currentUser.avatar || 'account_circle'}</span>
+                        <button id="logout-btn" class="logout-btn">Выйти</button>
+                    </div>
+                `;
+                document.getElementById('logout-btn').addEventListener('click', logout);
+            } else {
+                authSection.innerHTML = `
+                    <button id="login-btn" class="auth-btn">Вход</button>
+                    <button id="register-btn" class="auth-btn register-btn">Регистрация</button>
+                `;
+                document.getElementById('login-btn').addEventListener('click', () => openModal('login'));
+                document.getElementById('register-btn').addEventListener('click', () => openModal('register'));
+            }
+        }
+
+        function openModal(type) {
+            if (type === 'login') {
+                loginModal.style.display = 'flex';
+            } else {
+                registerModal.style.display = 'flex';
+            }
+        }
+
+        function closeModals() {
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'none';
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthUI();
+        }
+
+        function registerUser(name, email, password) {
+            const users = JSON.parse(localStorage.getItem('users'));
+            if (users.find(u => u.email === email)) {
+                alert('Пользователь с таким email уже существует');
+                return false;
+            }
+            const newUser = {
+                id: Date.now().toString(),
+                name: name,
+                email: email,
+                password: password,
+                role: 'user', // обычный пользователь
+                avatar: 'account_circle'
+            };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateAuthUI();
+            closeModals();
+            alert('Регистрация успешна!');
+            return true;
+        }
+
+        function loginUser(email, password) {
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                updateAuthUI();
+                closeModals();
+                alert('Вход выполнен успешно!');
+                return true;
+            } else {
+                alert('Неверный email или пароль');
+                return false;
+            }
+        }
+
+        function setGreeting() {
+            const hour = new Date().getHours();
+            if (hour < 12) greetingEl.textContent = 'Доброе утро!';
+            else if (hour < 18) greetingEl.textContent = 'Добрый день!';
+            else greetingEl.textContent = 'Добрый вечер!';
+        }
+        setGreeting();
+        updateAuthUI();
+
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', closeModals);
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModals();
             }
         });
-         const fadeElements = document.querySelectorAll('.fade-in');
-        fadeElements.forEach(el => {
-            el.style.opacity = 0;
-            el.style.transition = 'opacity 1.5s ease-in';
-        });
-        window.addEventListener('load', () => {
-            fadeElements.forEach(el => {
-                el.style.opacity = 1;
+
+        if (switchToRegister) {
+            switchToRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModals();
+                openModal('register');
             });
+        }
+        if (switchToLogin) {
+            switchToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModals();
+                openModal('login');
+            });
+        }
+
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            registerUser(name, email, password);
+        });
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            loginUser(email, password);
+        });
+
+        document.getElementById('rating-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Раздел «Рейтинг» в разработке. Скоро здесь будет интересно!');
         });
     </script>
 </body>
