@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT_Moskow - cyber arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="it_mos_new_logo.jpg" alt="Логотип" class="logo">
+        <nav class="btn">
+            <ul>
+                <li><a href="#" id="events-link">События</a></li>
+                <li><a href="#" id="tournaments-link">Турниры</a></li>
+                <li><a href="#" id="rating-link">Рейтинг</a></li>
+            </ul>
+        </nav>
+        <div class="greeting" id="greeting"></div>
+    </header>
+    <main>
+        <h1 class="cyber_arena fade-in">Кибер арена</h1>
+        <img src="aleksandr.jpeg" alt="Александр" class="image_alek hover-zoom">
+        <p class="rch_alek fade-in">
+            Дорогие студенты, абитуриенты и коллеги!<br>
+            Современный мир невозможно представить без цифровых технологий, и киберспорт давно перестал быть просто развлечением — это официальная спортивная дисциплина, индустрия с миллионными аудиториями и место для реализации талантов.<br>
+            В колледже IT.Москва мы всегда идем в ногу со временем. Именно поэтому мы с гордостью представляем наш новый сервис — «Кибер Арена».<br>
+            Это уникальная цифровая платформа, созданная специально для вас. Мы объединили киберспорт и удобство современных IT-решений, чтобы каждый студент мог почувствовать себя частью большого игрового сообщества прямо в стенах родного колледжа.<br>
+            Что такое «Кибер Арена»? Это ваш персональный помощник в мире виртуального спорта. Сервис решает три главные задачи:<br>
+            Поиск команды: Мечтаете собрать свой состав по CS2, Dota 2, Valorant или MLBB? «Кибер Арена» поможет найти единомышленников и тиммейтов среди студентов.<br>
+            Бронирование мест: У нас есть современное оборудование, но свободное время в игровой зоне — ресурс ценный. Теперь вы можете легко забронировать место за ПК, чтобы подготовиться к турниру или просто интересно провести время с друзьями.<br>
+            Участие в турнирах: Забудьте о сложных регистрациях! На нашей платформе вы в пару кликов сможете записаться на внутриколледжные и городские соревнования, отслеживать сетку турнира и свои результаты.<br>
+            Мы верим, что киберспорт развивает стратегическое мышление, реакцию и умение работать в команде — навыки, критически важные для будущих айтишников.<br>
+            Присоединяйтесь к «Кибер Арене»! Открывайте для себя мир турниров, находите друзей и докажите, что студенты IT.Москва — лучшие не только в коде, но и на виртуальных полях сражений.<br>
+            Добро пожаловать в игру!
+        </p>
+    </main>
+
+    <script>
+        const hour = new Date().getHours();
+        const greetingEl = document.getElementById('greeting');
+        if (hour < 12) greetingEl.textContent = 'Доброе утро!';
+        else if (hour < 18) greetingEl.textContent = 'Добрый день!';
+        else greetingEl.textContent = 'Добрый вечер!';
+
+        ['events', 'tournaments', 'rating'].forEach(id => {
+            const link = document.getElementById(id + '-link');
+            if (link) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Раздел в разработке. Скоро здесь будет интересно!');
+                });
+            }
+        });
+         const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transition = 'opacity 1.5s ease-in';
+        });
+        window.addEventListener('load', () => {
+            fadeElements.forEach(el => {
+                el.style.opacity = 1;
+            });
+        });
+    </script>
+</body>
+</html>
