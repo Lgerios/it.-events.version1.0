@@ -1,0 +1,113 @@
+{
+  "tournaments": [
+    {
+      "id": "1",
+      "title": "Dota 2 Battle Cup",
+      "game": "Dota 2",
+      "date": "2026-03-15T18:00:00",
+      "max_participants": 16,
+      "current_participants": 13,
+      "status": "soon",
+      "image_url": "https://via.placeholder.com/300x150/2a2a2a/5682f8?text=Dota+2"
+    },
+    {
+      "id": "2",
+      "title": "CS2 Open Qualifier",
+      "game": "CS2",
+      "date": "2026-03-20T15:00:00",
+      "max_participants": 16,
+      "current_participants": 8,
+      "status": "open",
+      "image_url": "https://via.placeholder.com/300x150/2a2a2a/5682f8?text=CS2"
+    },
+    {
+      "id": "3",
+      "title": "Valorant Collegiate",
+      "game": "Valorant",
+      "date": "2026-03-25T17:30:00",
+      "max_participants": 16,
+      "current_participants": 5,
+      "status": "recruiting",
+      "image_url": "https://via.placeholder.com/300x150/2a2a2a/5682f8?text=Valorant"
+    }
+  ],
+  "participants": [
+    {
+      "id": "1",
+      "tournamentId": 1,
+      "nickname": "DragonSlayer",
+      "email": "dragon@example.com",
+      "team_name": "Dragons"
+    },
+    {
+      "id": "2",
+      "tournamentId": 1,
+      "nickname": "Phoenix",
+      "email": "phoenix@example.com",
+      "team_name": ""
+    },
+    {
+      "id": "3a92",
+      "tournamentId": 1,
+      "nickname": "никто",
+      "email": "nijjer228@gmail.com",
+      "team_name": "gg"
+    }
+  ],
+  "leaderboard": [
+    {
+      "id": "1",
+      "nickname": "DragonSlayer",
+      "points": 2450,
+      "wins": 12
+    },
+    {
+      "id": "2",
+      "nickname": "AimBOT",
+      "points": 2320,
+      "wins": 10
+    },
+    {
+      "id": "3",
+      "nickname": "NoobNoMore",
+      "points": 2180,
+      "wins": 9
+    },
+    {
+      "id": "4",
+      "nickname": "W1nner",
+      "points": 2010,
+      "wins": 8
+    },
+    {
+      "id": "e517",
+      "nickname": "никто",
+      "points": 50,
+      "wins": 0
+    }
+  ],
+  "rewards": [
+    {
+      "id": "1",
+      "place": 1,
+      "title": "1 место",
+      "description": "50% призового фонда + кубок",
+      "image_url": "https://via.placeholder.com/200x150/2a2a2a/5682f8?text=Золото"
+    },
+    {
+      "id": "2",
+      "place": 2,
+      "title": "2 место",
+      "description": "30% призового фонда + медаль",
+      "image_url": "https://via.placeholder.com/200x150/2a2a2a/5682f8?text=Серебро"
+    },
+    {
+      "id": "3",
+      "place": 3,
+      "title": "3 место",
+      "description": "20% призового фонда + медаль",
+      "image_url": "https://via.placeholder.com/200x150/2a2a2a/5682f8?text=Бронза"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

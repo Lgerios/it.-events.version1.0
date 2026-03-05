@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT.Москва | Кибер Арена</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <img src="images/it_mos_new_logo.jpg" alt="Логотип" class="logo">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="#tournaments" class="nav__link">Турниры</a></li>
+                    <li><a href="#register" class="nav__link">Регистрация</a></li>
+                    <li><a href="#bracket" class="nav__link">Сетка</a></li>
+                    <li><a href="#leaderboard" class="nav__link">Лидеры</a></li>
+                    <li><a href="#rewards" class="nav__link">Награды</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Приветствие -->
+        <section class="hero reveal">
+            <div class="container hero__container">
+                <div class="hero__image">
+                    <img src="images/al.jpg" alt="Фото" class="hero__photo">
+                </div>
+                <div class="hero__speech">
+                    <h2 class="hero__greeting">Приветствую!</h2>
+                    <p>Представляю вам новый сервис колледжа IT.Москва — «Кибер Арена». Это удобный инструмент для всех, кто увлекается киберспортом.</p>
+                    <p>Сервис позволяет:<br>🔹 Находить команду для совместной игры;<br>🔹 Бронировать места на наших киберспортивных площадках;<br>🔹 Быстро регистрироваться на турниры и следить за расписанием.</p>
+                    <p>«Кибер Арена» создана, чтобы вы могли больше времени уделять практике, тренировкам и участию в соревнованиях. Пользуйтесь, объединяйтесь и побеждайте!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Турниры -->
+        <section id="tournaments" class="section reveal">
+            <div class="container">
+                <h2 class="section__title">Актуальные турниры</h2>
+                <div class="cards-grid" id="tournaments-list"></div>
+            </div>
+        </section>
+
+        <!-- Регистрация -->
+        <section id="register" class="section section--dark reveal">
+            <div class="container">
+                <h2 class="section__title">Регистрация на турнир</h2>
+                <form class="registration-form" id="registrationForm">
+                    <div class="form__group">
+                        <label for="name" class="form__label">Имя / Никнейм</label>
+                        <input type="text" id="name" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email</label>
+                        <input type="email" id="email" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="team" class="form__label">Название команды (если есть)</label>
+                        <input type="text" id="team" class="form__input">
+                    </div>
+                    <div class="form__group">
+                        <label for="tournament-select" class="form__label">Выберите турнир</label>
+                        <select id="tournament-select" class="form__select" required>
+                            <option value="" disabled selected>— выберите —</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="button button--accent">Отправить заявку</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Сетка -->
+        <section id="bracket" class="section reveal">
+            <div class="container">
+                <h2 class="section__title">Турнирная сетка</h2>
+                <div id="bracket-container"></div>
+            </div>
+        </section>
+
+        <!-- Лидеры -->
+        <section id="leaderboard" class="section section--dark reveal">
+            <div class="container">
+                <h2 class="section__title">Таблица лидеров сезона</h2>
+                <table class="leaderboard" id="leaderboard-table">
+                    <thead>
+                        <tr><th>#</th><th>Игрок / Команда</th><th>Очки</th><th>Победы</th></tr>
+                    </thead>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Награды -->
+        <section id="rewards" class="section reveal">
+            <div class="container">
+                <h2 class="section__title">Награды турниров</h2>
+                <div class="rewards-grid" id="rewards-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>© 2026 IT.Москва — Кибер Арена. Все права защищены.</p>
+            <p>Проект студентов колледжа</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
