@@ -1,0 +1,153 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123",
+      "isAdmin": true,
+      "nickname": "Администратор",
+      "points": 0,
+      "wins": 0
+    },
+    {
+      "id": "2",
+      "username": "player1",
+      "password": "12345",
+      "isAdmin": false,
+      "nickname": "DragonSlayer",
+      "points": 250,
+      "wins": 20
+    },
+    {
+      "id": "3",
+      "username": "player2",
+      "password": "12345",
+      "isAdmin": false,
+      "nickname": "AimBOT",
+      "points": 180,
+      "wins": 1
+    },
+    {
+      "id": "b88b",
+      "username": "mil",
+      "nickname": "miler",
+      "password": "timon",
+      "isAdmin": false,
+      "points": 50,
+      "wins": 0
+    },
+    {
+      "id": "6507",
+      "username": "ivan",
+      "nickname": "miler",
+      "password": "timon",
+      "isAdmin": false,
+      "points": 50,
+      "wins": 0
+    }
+  ],
+  "tournaments": [
+    {
+      "id": "1",
+      "title": "Dota 2 Battle Cup",
+      "game": "Dota 2",
+      "date": "2026-03-15T06:00:00.000Z",
+      "max_participants": 16,
+      "current_participants": 16,
+      "status": "soon",
+      "image": "images/dota2.jpg"
+    },
+    {
+      "id": "2",
+      "title": "CS2 Open Qualifier",
+      "game": "CS2",
+      "date": "2026-03-20T03:00:00.000Z",
+      "max_participants": 16,
+      "current_participants": 8,
+      "status": "open",
+      "image": "images/cs2.jpg"
+    },
+    {
+      "id": "3",
+      "title": "Valorant Collegiate",
+      "game": "Valorant",
+      "date": "2026-03-24T23:30:00.000Z",
+      "max_participants": 16,
+      "current_participants": 5,
+      "status": "recruiting",
+      "image": "images/valorant.jpg"
+    },
+    {
+      "id": "8b7c",
+      "title": "дот2",
+      "game": "дота2 ",
+      "date": "2026-04-03T09:32:00.000Z",
+      "max_participants": 16,
+      "status": "soon",
+      "image": "https://avatars.mds.yandex.net/i?id=1af673ba1a953899e2bc1faaa05df5ba_l-3699791-images-thumbs&n=13",
+      "current_participants": 0
+    }
+  ],
+  "participants": [
+    {
+      "id": "1",
+      "tournamentId": 1,
+      "userId": 2,
+      "registeredAt": "2026-03-01T10:00:00"
+    },
+    {
+      "id": "2",
+      "tournamentId": 1,
+      "userId": 3,
+      "registeredAt": "2026-03-02T11:30:00"
+    },
+    {
+      "id": "ef68",
+      "tournamentId": 1,
+      "userId": "b88b",
+      "registeredAt": "2026-03-06T09:54:59.577Z"
+    },
+    {
+      "id": "185c",
+      "tournamentId": 1,
+      "userId": "6507",
+      "registeredAt": "2026-03-06T09:56:04.355Z"
+    },
+    {
+      "id": "a50d",
+      "tournamentId": 1,
+      "userId": "19f5",
+      "registeredAt": "2026-03-06T09:57:42.812Z"
+    },
+    {
+      "id": "97c0",
+      "tournamentId": 1,
+      "userId": "0702",
+      "registeredAt": "2026-03-06T09:58:04.880Z"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "1",
+      "place": 1,
+      "title": "Чемпион",
+      "description": "50% призового фонда + кубок",
+      "icon": "🥇"
+    },
+    {
+      "id": "2",
+      "place": 2,
+      "title": "Серебряный призёр",
+      "description": "30% призового фонда + медаль",
+      "icon": "🥈"
+    },
+    {
+      "id": "3",
+      "place": 3,
+      "title": "Бронзовый призёр",
+      "description": "20% призового фонда + медаль",
+      "icon": "🥉"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
